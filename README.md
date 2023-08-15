@@ -6,6 +6,10 @@ Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introdu
 
 ```bash
 npx nuxi init timer-nuxt
+
+# Add Vuetify and Sass
+# Tutorial: https://www.youtube.com/watch?v=xB7c0G3kVuw
+yarn add vuetify@next sass
 ```
 
 ## Setup

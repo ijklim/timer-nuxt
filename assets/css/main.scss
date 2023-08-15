@@ -1,0 +1,26 @@
+:root {
+  font-family: 'Comic Neue';
+  line-height: 1.5;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Remove static vertical scrollbar introduced by Vuetify */
+html {
+  overflow-y: auto;
+}
+
+/* Suitable for separating page content and app footer */
+.footer-border-bottom {
+  border-color: rgba(255, 255, 255, 0.35);
+  border-style: solid;
+  border-bottom-width: 1px;
+}
+
+h1 {
+  font-family: 'Bubblegum Sans';
+}
