@@ -20,8 +20,14 @@ export default defineNuxtConfig({
     '@/assets/css/main.scss',
   ],
   devtools: { enabled: false },
-  modules: [
-  ],
+  // `nitro` setting below allows usage of `import.meta`
+  nitro: {
+    esbuild: {
+      options: {
+        target: 'node18',
+      }
+    }
+  },
   // Turn ssr to false during development for faster load time
   ssr: true,
 });
