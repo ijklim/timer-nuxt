@@ -1,5 +1,5 @@
 const appName = 'Online Timer';
-const appVersion = '2.0.2';
+const appVersion = '2.0.3';
 const appMetaDescription = 'Free Online Timer. Customize your alarm sound and background picture. Easily set hour, minute, and second intervals.';
 
 // https://nuxt.com/docs/getting-started/configuration

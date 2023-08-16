@@ -6,12 +6,6 @@
   const userSelection = useUserSelection();
 
 
-  // === Computed Fields ===
-  const urlBackgroundImage =  computed(() => {
-    return `url(${userSelection.backgroundImageFileSelectedUrl.value})`;
-  });
-
-
   // === Watchers ===
   watchEffect(() => {
     // console.log(`[${utility.currentFileName}::watchEffect()] timer.state.currentTimer: `, timer.state.currentTimer);
@@ -81,7 +75,7 @@
 <template>
   <!-- align-center: vertically middle -->
   <!-- justify-center: horizontally center -->
-  <VRow class="background align-center">
+  <VRow class="align-center">
     <VCol
       class="text-center mt-5 py-0"
       cols="12"
@@ -129,13 +123,6 @@
 </template>
 
 <style scoped>
-/** === Background Image === */
-.background {
-  background-image: v-bind(urlBackgroundImage);
-  background-position: center;
-  background-size: cover;
-}
-
 .timer-display {
   cursor: pointer;
 }

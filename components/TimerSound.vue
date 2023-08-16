@@ -163,6 +163,7 @@
         }
 
         if ($event?.target) {
+          // Typescript casting: https://freshman.tech/snippets/typescript/fix-value-not-exist-eventtarget/
           ($event.target as HTMLAudioElement).play();
         }
       }, delay);

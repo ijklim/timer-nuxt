@@ -11,6 +11,12 @@
   const utility = useUtility(import.meta);
 
 
+  // === Computed Fields ===
+  const urlBackgroundImage =  computed(() => {
+    return `url(${userSelection.backgroundImageFileSelectedUrl.value})`;
+  });
+
+
   // === Methods ===
   /**
    * Update app title, meta description, initial timer when route changes
@@ -91,7 +97,7 @@
     <VMain>
       <!-- Note: Removing padding from container prevents time display from being cut off on the right, and footer with gap -->
       <VContainer fluid class="pa-0">
-        <section class="main-content">
+        <section class="main-content-with-background">
           <!-- Note: More top spacing needed to support removing --v-layout-top space -->
           <RouterView class="pt-10" />
         </section>
@@ -105,7 +111,10 @@
 
 <style scoped>
 /* Reserve space to prevent footer from appearing in the content area */
-.main-content {
+.main-content-with-background {
+  background-image: v-bind(urlBackgroundImage);
+  background-position: center;
+  background-size: cover;
   min-height: calc(100vh - 105px);
 }
 
