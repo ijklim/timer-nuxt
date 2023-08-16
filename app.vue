@@ -11,9 +11,15 @@
   const utility = useUtility(import.meta);
 
 
+  // === Data ===
+  const state = reactive({
+    shouldShowBackgroundImage: true,
+  });
+
+
   // === Computed Fields ===
   const urlBackgroundImage =  computed(() => {
-    return `url(${userSelection.backgroundImageFileSelectedUrl.value})`;
+    return state.shouldShowBackgroundImage ? `url(${userSelection.backgroundImageFileSelectedUrl.value})` : 'none';
   });
 
 
@@ -32,20 +38,26 @@
       // Route path (e.g. /10-minute-timer) matches a key in SUPPORTED_URL_SEGMENTS
       const isInitialTimerUpdatable = !SUPPORTED_URL_SEGMENTS[searchKey]?.timer;
       // Timer is preset if the `timer` attribute exists
-      const timer = SUPPORTED_URL_SEGMENTS[searchKey]?.timer;
+      const timer = SUPPORTED_URL_SEGMENTS[searchKey]?.timer ?? null;
 
       userSelection.setInitialTimer(timer, isInitialTimerUpdatable);
       userSelection.appTitle.value = SUPPORTED_URL_SEGMENTS[searchKey]?.appTitle;
       userSelection.setPageMetaDescription(SUPPORTED_URL_SEGMENTS[searchKey]?.pageMetaDescription);
+
+      state.shouldShowBackgroundImage = true;
+      return;
     }
+
+    // No background image for pages such as `/benefits` and `/privacy`
+    state.shouldShowBackgroundImage = false;
   };
 
 
   // === Life Cycle Hooks ===
   // Note: `router.afterEach` will only trigger after route change, not initial load
-  const removeRouterAfterEach = router.afterEach(handleRouteChange);
+  const removeEventRouterAfterEach = router.afterEach(handleRouteChange);
 
-  onBeforeUnmount(removeRouterAfterEach);
+  onBeforeUnmount(removeEventRouterAfterEach);
 
   onMounted(async () => {
     // Trigger route change logic on first load
