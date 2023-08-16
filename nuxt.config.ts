@@ -21,6 +21,6 @@ export default defineNuxtConfig({
     '@/assets/css/main.scss',
   ],
   devtools: { enabled: false },
+  // Turn ssr to false during development for faster load time
+  ssr: false,
 });
-
-
