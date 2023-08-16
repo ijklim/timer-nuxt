@@ -32,6 +32,15 @@
   const handleRouteChange: NavigationHookAfter = (toRoute) => {
     // console.log(`[${utility.currentFileName}::handleRouteChange()] toRoute.[path, params]:`, toRoute.path, toRoute.params);
 
+    // Whenever route changes, scroll to the top, add timer as some pages takes a little time
+    setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+    }, 200);
+
     const supportedUrlSegmentKeys = Object.keys(SUPPORTED_URL_SEGMENTS);
     const searchKey = toRoute.path;
     if (supportedUrlSegmentKeys.includes(searchKey)) {

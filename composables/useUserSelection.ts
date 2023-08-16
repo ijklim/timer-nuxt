@@ -30,10 +30,10 @@ const BACKGROUND_IMAGE_FILES = [
 
 // === Data ===
 interface StateObject {
-  appTitle: string;
-  backgroundImageFileSelected: string;
+  appTitle: string | null;
+  backgroundImageFileSelected: string | null;
   initialTimer: number | null;
-  isDarkThemeSelected: boolean;
+  isDarkThemeSelected: boolean | null;
   isInitialTimerUpdatable: boolean;
 }
 const state: StateObject = reactive({
@@ -185,7 +185,9 @@ const setPageMetaDescription = (metaDescription: string) => {
  * @param {string} title
  */
 const setPageTitle = (title: string) => {
-  document.title = title;
+  useSeoMeta({
+    title: () => title,
+  });
 };
 
 

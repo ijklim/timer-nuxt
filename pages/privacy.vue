@@ -7,7 +7,7 @@
 
 
   // === Data ===
-  const currentDomainName = document.location.origin;
+  const currentDomainName = process.client ? window?.location?.hostname : '';
 
 
   userSelection.setPageMetaDescription('Privacy Policy');

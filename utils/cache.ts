@@ -6,7 +6,7 @@ const utility = useUtility(import.meta);
 
 
 export const cache = {
-  get: (key: string, defaultValue: string | null = null) => {
+  get: (key: string, defaultValue: any = null) => {
     // console.log(`[${utility.currentFileName}::cache::get] key, localStorage.getItem(key): `, key, localStorage.getItem(key));
 
     return process.client ? (localStorage.getItem(key) ?? defaultValue) : defaultValue;

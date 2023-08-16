@@ -11,7 +11,6 @@ export default defineNuxtConfig({
         { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Dai Banna SIL&display=swap' },
       ],
     },
-    pageTransition: { name: 'page', mode: 'out-in' },
   },
   build: {
     transpile: ['vuetify'],
@@ -21,6 +20,8 @@ export default defineNuxtConfig({
     '@/assets/css/main.scss',
   ],
   devtools: { enabled: false },
+  modules: [
+  ],
   // Turn ssr to false during development for faster load time
-  ssr: false,
+  ssr: true,
 });
