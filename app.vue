@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { NavigationHookAfter, RouteLocationNormalized } from 'vue-router';
+  import { NavigationHookAfter } from 'vue-router';
   const { appName, SECONDS_IN_A_MINUTE, SECONDS_IN_AN_HOUR, SUPPORTED_URL_SEGMENTS } = useAppConfig();
 
 
@@ -25,7 +25,7 @@
 
   // === Methods ===
   /**
-   * Update app title, meta description, initial timer when route changes
+   * Update app title, meta description, initial timer based on route (e.g. {host}/10-minute-timer)
    *
    * @param toRoute
    */
@@ -33,13 +33,15 @@
     // console.log(`[${utility.currentFileName}::handleRouteChange()] toRoute.[path, params]:`, toRoute.path, toRoute.params);
 
     // Whenever route changes, scroll to the top, add timer as some pages takes a little time
-    setTimeout(() => {
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: "smooth",
-      });
-    }, 200);
+    if (process.client) {
+      setTimeout(() => {
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: "smooth",
+        });
+      }, 200);
+    }
 
     const supportedUrlSegmentKeys = Object.keys(SUPPORTED_URL_SEGMENTS);
     const searchKey = toRoute.path;
@@ -66,13 +68,8 @@
   // Note: `router.afterEach` will only trigger after route change, not initial load
   const removeEventRouterAfterEach = router.afterEach(handleRouteChange);
 
+  // Clean up
   onBeforeUnmount(removeEventRouterAfterEach);
-
-  onMounted(async () => {
-    // Trigger route change logic on first load
-    await router.isReady();
-    handleRouteChange(route, route);
-  });
 
 
   // === Watchers ===
@@ -106,7 +103,12 @@
 
     // Change text in browser tab
     userSelection.setPageTitle(`${arrayPageTitle.join(':')} | ${userSelection.appTitle.value}`);
-  });
+  }, { immediate: true });
+
+
+  // === Server Side code for prerendering ===
+  await router.isReady();
+  handleRouteChange(route, route);
 </script>
 
 <template>

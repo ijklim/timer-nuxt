@@ -18,7 +18,13 @@ export default defineNuxtConfig({
   css: [
     '@/assets/css/main.scss',
   ],
+  devServer: {
+    port: 8800,
+  },
   devtools: { enabled: false },
+  extends: [
+    '../nuxt-ads',
+  ],
   modules: [
     '@invictus.codes/nuxt-vuetify',
   ],
@@ -27,8 +33,8 @@ export default defineNuxtConfig({
     esbuild: {
       options: {
         target: 'node18',
-      }
-    }
+      },
+    },
   },
   // Turn ssr to false during development for faster load time
   ssr: true,

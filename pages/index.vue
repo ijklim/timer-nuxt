@@ -119,6 +119,15 @@
     >
       <ActionButtons />
     </VCol>
+
+    <!-- === Ads: Google AdSense, Amazon === -->
+    <!-- Available through extends '../nuxt-ads' -->
+    <VCol
+      class="mt-10 text-center"
+      cols="12"
+    >
+      <RandomAd />
+    </VCol>
   </VRow>
 </template>
 
