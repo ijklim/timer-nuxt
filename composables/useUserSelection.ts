@@ -20,11 +20,14 @@ const BACKGROUND_IMAGE_FILES = [
   'boats-blue-lake',
   'boats-docked',
   'candles',
+  'cartoon-dragon',
+  'dinosaur-trex',
   'dog',
   'landscape-1',
   'landscape-2',
   'lanterns',
   'unicorn-fluffy-toys',
+  'unicorn-pegasus-fantasy-art',
 ];
 
 
