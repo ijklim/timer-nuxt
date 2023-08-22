@@ -10,21 +10,21 @@ const utility = useUtility(import.meta);
 
 // === Background Image Choices ===
 const optionNoBackgroundSelected = '(No Background Image)';
-// Note: All background image files must be located in folder `@/assets/images`
+// Note: All background image files must be located in folder `@/assets/images`, must have extension `.webp`
 const BACKGROUND_IMAGE_FILES = [
   optionNoBackgroundSelected,
-  '2-puppies.jpg',
-  '3d-render.jpg',
-  'beach-vacation.jpg',
-  'bird.jpg',
-  'boats-blue-lake.jpg',
-  'boats-docked.jpg',
-  'candles.jpg',
-  'dog.jpg',
-  'landscape-1.jpg',
-  'landscape-2.jpg',
-  'lanterns.jpg',
-  'unicorn-fluffy-toys.jpg',
+  '2-puppies',
+  '3d-render',
+  'beach-vacation',
+  'bird',
+  'boats-blue-lake',
+  'boats-docked',
+  'candles',
+  'dog',
+  'landscape-1',
+  'landscape-2',
+  'lanterns',
+  'unicorn-fluffy-toys',
 ];
 
 
@@ -100,6 +100,8 @@ const backgroundImageFileSelected = computed({
 
 /**
  * The generated url of the background image selected by the user
+ *
+ * Note: All image files should have extension `.webp`
  */
 const backgroundImageFileSelectedUrl = computed(() => {
   if (backgroundImageFileSelected.value === optionNoBackgroundSelected) {
@@ -107,7 +109,7 @@ const backgroundImageFileSelectedUrl = computed(() => {
   }
 
   const fileName = `${backgroundImageFileSelected.value}`;
-  const result = new URL(`../assets/img/${fileName}`, import.meta.url).href;
+  const result = new URL(`../assets/img/${fileName}.webp`, import.meta.url).href;
 
   return result;
 });

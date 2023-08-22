@@ -5,7 +5,7 @@
 
 <template>
   <RouterLink to="/">
-    <img src="~/assets/img/logo.png" class="logo mt-1 mr-2"/>
+    <img src="~/assets/img/logo.webp" class="logo mt-1 mr-2"/>
   </RouterLink>
   <h1 @click="router.push({ path: '/' })">{{ userSelection.appTitle.value }}</h1>
 </template>
