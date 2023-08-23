@@ -89,13 +89,14 @@ const backgroundImageFileSelected = computed({
 
     // Get active index from cache
     const cachedBackgroundImageFileSelected = cache.get(cacheKeyBackgroundImageFileSelected);
-    // console.log(`[${utility.currentFileName}::computed::backgroundImageFileSelected] cachedBackgroundImageFileSelected`, cachedBackgroundImageFileSelected);
+    // console.log(`[${utility.currentFileName}::computed::backgroundImageFileSelected::get] cachedBackgroundImageFileSelected`, cachedBackgroundImageFileSelected);
 
     // Note: Check to ensure the cached key is still valid
     return BACKGROUND_IMAGE_FILES.includes(cachedBackgroundImageFileSelected ?? '') ? cachedBackgroundImageFileSelected : optionNoBackgroundSelected;
   },
   set(value) {
-    state.backgroundImageFileSelected = value;
+    // console.log(`[${utility.currentFileName}::computed::backgroundImageFileSelected::set] value`, value);
+    state.backgroundImageFileSelected = value || optionNoBackgroundSelected;
     // Cache setting
     cache.store(cacheKeyBackgroundImageFileSelected, value);
   },
@@ -112,7 +113,7 @@ const backgroundImageFileSelectedUrl = computed(() => {
   }
 
   const fileName = `${backgroundImageFileSelected.value}`;
-  const result = new URL(`../assets/img/${fileName}.webp`, import.meta.url).href;
+  const result = getImageUrl(fileName);
 
   return result;
 });
@@ -162,6 +163,21 @@ const isDarkThemeSelected = computed({
 
 // === Methods ===
 /**
+ * Return the URL path of an image file
+ *
+ * Note: Image file is expected to be located in folder `assets/img`
+ *
+ * @param {string} fileName
+ * @param {string} extension
+ *
+ * @returns {string}
+ */
+const getImageUrl = (fileName: string, extension: string = 'webp'): string => {
+  const imageFolder = '../assets/img';
+  return new URL(`${imageFolder}/${fileName}.${extension}`, import.meta.url).href;
+};
+
+/**
  * Set state variable initialTimer with the option to lock down the timer
  *
  * @param {int} value
@@ -203,8 +219,10 @@ export default () => {
     backgroundColorInputField,
     backgroundImageFileSelected,
     backgroundImageFileSelectedUrl,
+    getImageUrl,
     initialTimer,
     isDarkThemeSelected,
+    optionNoBackgroundSelected,
     setInitialTimer,
     setPageMetaDescription,
     setPageTitle,
