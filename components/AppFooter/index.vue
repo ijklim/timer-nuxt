@@ -1,5 +1,6 @@
 <script setup lang="ts">
-  const { appVersion, SUPPORTED_URL_SEGMENTS } = useAppConfig();
+  import { version } from '~/package.json';
+  const { SUPPORTED_URL_SEGMENTS } = useAppConfig();
 
 
   // === Computed Fields ===
@@ -44,7 +45,7 @@
     <VCol class="text-center">
       Brought to you by <a href="https://ivan-lim.com" target="_blank" class="mr-2">Ivan Lim</a>
       <small class="mx-2">© {{ new Date().getFullYear() }}</small>
-      <small class="mx-2">🔖 {{ appVersion }}</small>
+      <small class="mx-2">🔖 {{ version }}</small>
     </VCol>
   </VRow>
 </template>
