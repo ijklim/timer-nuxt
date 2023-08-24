@@ -2,7 +2,9 @@
   "name": "nuxt-app",
   "displayName": "Online Timer",
   "version": "2.3.3",
-  "author": { "name": "Ivan Lim" },
+  "author": {
+    "name": "Ivan Lim"
+  },
   "private": true,
   "scripts": {
     "build": "nuxt build",

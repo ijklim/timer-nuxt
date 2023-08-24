@@ -168,7 +168,7 @@ const isDarkThemeSelected = computed({
  */
 const getImageUrl = (fileName: string, extension: string = 'webp'): string => {
   // Note: Cannot use all variables in url path below, Vite would not know to copy the asset files
-  return `/img/${fileName}.${extension}`;
+  return `/img/background/${fileName}.${extension}`;
 };
 
 /**
