@@ -111,8 +111,7 @@
     // Note: Path must start with a static folder (e.g. @/assets/audios/) for Vite to process the asset file in Production build
     // https://vitejs.dev/guide/assets.html
     // Note: Must use `/src` instead of `@` in URL()
-    const result = new URL(`../assets/audio/${fileName}`, import.meta.url).href;
-    // const result = `~/assets/audio/${fileName}`;
+    const result = `/audio/${fileName}`;
     // For Debug Only
     // console.log(`[${utility.currentFileName}::computed::soundFileSelectedUrl()] fileName, result`, fileName, result);
 
