@@ -1,9 +1,3 @@
-// import { computed, reactive } from 'vue';
-// import useUtility from '@/composables/useUtility.js';
-// import { cache } from '@/utilities/cache.js';
-// import { appName } from '@/utilities/constants.js';
-
-
 // === Composables ===
 const utility = useUtility(import.meta);
 
@@ -174,7 +168,7 @@ const isDarkThemeSelected = computed({
  */
 const getImageUrl = (fileName: string, extension: string = 'webp'): string => {
   // Note: Cannot use all variables in url path below, Vite would not know to copy the asset files
-  return new URL(`../assets/img/${fileName}.${extension}`, import.meta.url).href;
+  return `/img/${fileName}.${extension}`;
 };
 
 /**

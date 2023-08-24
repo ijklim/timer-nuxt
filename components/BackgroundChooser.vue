@@ -13,7 +13,7 @@
       .map((backgroundImageFile) => {
         // Note: No thumbnail for No Background Selected
         const urlThumbnail = userSelection.optionNoBackgroundSelected === backgroundImageFile
-          ? new URL(`@/assets/img/blank.png`, import.meta.url).href
+          ? userSelection.getImageUrl('blank', 'png')
           : userSelection.getImageUrl(backgroundImageFile);
         return {
           title: backgroundImageFile,
