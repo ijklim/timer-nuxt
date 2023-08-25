@@ -18,10 +18,12 @@ export default defineNuxtConfig({
   css: [
     '@/assets/css/main.scss',
   ],
+  // Serve localhost at specified port
   devServer: {
     port: 8800,
   },
   devtools: { enabled: false },
+  // Internal project that supports Google and Amazon ads
   extends: [
     '../nuxt-ads',
   ],

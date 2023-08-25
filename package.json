@@ -1,7 +1,7 @@
 {
   "name": "nuxt-app",
   "displayName": "Online Timer",
-  "version": "2.3.3",
+  "version": "2.4.3",
   "author": {
     "name": "Ivan Lim"
   },
@@ -17,9 +17,12 @@
   "devDependencies": {
     "@invictus.codes/nuxt-vuetify": "^0.3.0",
     "@nuxt/devtools": "latest",
-    "nuxt": "^3.6.5"
+    "nuxt": "^3.6.5",
+    "sass": "^1.66.1"
   },
-  "dependencies": {
-    "sass": "^1.65.1"
+  "dependencies": {},
+  "dependencyNotes": {
+    "@invictus.codes/nuxt-vuetify": "Install Vuetify Material Design component framework",
+    "sass": "Allows scss styling syntax, used in main.scss"
   }
 }

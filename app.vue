@@ -19,7 +19,7 @@
 
   // === Computed Fields ===
   const urlBackgroundImage =  computed(() => {
-    return state.shouldShowBackgroundImage ? `url(${userSelection.backgroundImageFileSelectedUrl.value})` : 'none';
+    return `url(${state.shouldShowBackgroundImage ? userSelection.backgroundImageFileSelectedUrl.value : userSelection.getImageUrl('blank', 'png')})`;
   });
 
 

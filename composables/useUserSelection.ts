@@ -103,7 +103,7 @@ const backgroundImageFileSelected = computed({
  */
 const backgroundImageFileSelectedUrl = computed(() => {
   if (backgroundImageFileSelected.value === optionNoBackgroundSelected) {
-    return 'none';
+    return getImageUrl('blank', 'png');
   }
 
   const fileName = `${backgroundImageFileSelected.value}`;
