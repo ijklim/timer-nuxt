@@ -137,12 +137,8 @@ const isDarkThemeSelected = computed({
       return state.isDarkThemeSelected;
     }
 
-    // Get active index from cache
     const defaultValue = true;
-    const cachedIsDarkThemeSelected = cache.get(cacheKeyIsDarkThemeSelected);
-
-    // Note: Cache stores boolean as string 'true' or 'false'
-    return cachedIsDarkThemeSelected ? cachedIsDarkThemeSelected === 'true' : defaultValue;
+    return defaultValue;
   },
   set(value: boolean) {
     state.isDarkThemeSelected = value;
@@ -212,6 +208,7 @@ export default () => {
     backgroundImageFileSelectedUrl,
     cacheKeyBackgroundImageFileSelected,
     cacheKeyInitialTimer,
+    cacheKeyIsDarkThemeSelected,
     getImageUrl,
     initialTimer,
     isDarkThemeSelected,

@@ -20,6 +20,17 @@
   watch(userSelection.isDarkThemeSelected, (value) => {
     theme.global.name.value = value ? 'dark' : 'light';
   }, { immediate: true });
+
+
+  // === Lifecycle Hooks ===
+  onMounted(() => {
+    // Change theme if user has selected a different one previously (which will be cached)
+    // Note: Important to perform change here to avoid hydration warning
+    const cachedIsDarkThemeSelected = cache.get(userSelection.cacheKeyIsDarkThemeSelected);
+    if (cachedIsDarkThemeSelected) {
+      userSelection.isDarkThemeSelected.value = cachedIsDarkThemeSelected === 'true';
+    }
+  });
 </script>
 
 <template>
