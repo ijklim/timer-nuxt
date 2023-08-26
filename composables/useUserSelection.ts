@@ -51,7 +51,7 @@ const appTitle = computed({
   get() {
     return state.appTitle ?? useAppConfig().appName;
   },
-  set(value) {
+  set(value: string) {
     if (value) {
       state.appTitle = value;
       return;
@@ -81,14 +81,11 @@ const backgroundImageFileSelected = computed({
       return state.backgroundImageFileSelected;
     }
 
-    // Get active index from cache
-    const cachedBackgroundImageFileSelected = cache.get(cacheKeyBackgroundImageFileSelected);
-    // console.log(`[${utility.currentFileName}::computed::backgroundImageFileSelected::get] cachedBackgroundImageFileSelected`, cachedBackgroundImageFileSelected);
-
-    // Note: Check to ensure the cached key is still valid
-    return BACKGROUND_IMAGE_FILES.includes(cachedBackgroundImageFileSelected ?? '') ? cachedBackgroundImageFileSelected : optionNoBackgroundSelected;
+    // Note: Do not consider cached value here, to avoid SSR hydration warning
+    const defaultValue = optionNoBackgroundSelected;
+    return defaultValue;
   },
-  set(value) {
+  set(value: string) {
     // console.log(`[${utility.currentFileName}::computed::backgroundImageFileSelected::set] value`, value);
     state.backgroundImageFileSelected = value || optionNoBackgroundSelected;
     // Cache setting
@@ -118,15 +115,15 @@ const backgroundImageFileSelectedUrl = computed(() => {
 const cacheKeyInitialTimer = `${utility.cacheKeyPrefix}__initialTimer`;
 const initialTimer = computed({
   get() {
+    if (state.initialTimer) {
+      return state.initialTimer
+    }
+
     // Default timer is 5 x 60 seconds (i.e. 5 mins)
     const defaultTimer = 5 * 60;
-    const result = state.initialTimer || cache.get(cacheKeyInitialTimer, defaultTimer);
-    // console.log(`[${utility.currentFileName}::initialTimer::get] cacheKeyInitialTimer, result: `, cacheKeyInitialTimer, result);
-
-    // Note: Check to ensure the cached key is still valid
-    return parseInt(result) || defaultTimer;
+    return defaultTimer;
   },
-  set(value) {
+  set(value: number) {
     setInitialTimer(value);
     // Cache setting
     cache.store(cacheKeyInitialTimer, state.initialTimer);
@@ -147,7 +144,7 @@ const isDarkThemeSelected = computed({
     // Note: Cache stores boolean as string 'true' or 'false'
     return cachedIsDarkThemeSelected ? cachedIsDarkThemeSelected === 'true' : defaultValue;
   },
-  set(value) {
+  set(value: boolean) {
     state.isDarkThemeSelected = value;
     // Cache setting
     cache.store(cacheKeyIsDarkThemeSelected, value);
@@ -213,6 +210,8 @@ export default () => {
     backgroundColorInputField,
     backgroundImageFileSelected,
     backgroundImageFileSelectedUrl,
+    cacheKeyBackgroundImageFileSelected,
+    cacheKeyInitialTimer,
     getImageUrl,
     initialTimer,
     isDarkThemeSelected,

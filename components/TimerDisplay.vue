@@ -5,6 +5,7 @@
 
 
   // === Composables ===
+  const userSelection = useUserSelection();
   const utility = useUtility(import.meta);
 
 
@@ -33,6 +34,17 @@
       ('0' + minutes).slice(-2),
       ('0' + seconds).slice(-2),
     ].join(':');
+  });
+
+
+  // === Lifecycle Hooks ===
+  onMounted(() => {
+    // Change initial timer if user has set a different time previously (which will be cached)
+    // Note: Important to perform change here to avoid hydration warning
+    const cachedInitialTimer = cache.get(userSelection.cacheKeyInitialTimer);
+    if (userSelection.state.isInitialTimerUpdatable && parseInt(cachedInitialTimer)) {
+      userSelection.initialTimer.value = parseInt(cachedInitialTimer);
+    }
   });
 </script>
 

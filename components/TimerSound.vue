@@ -119,19 +119,19 @@
   });
 
   const cacheKeySoundFileSelected = `${utility.cacheKeyPrefix}__soundFileSelected`;
+  /**
+   * The sound file that will play when the timer is up
+   */
   const soundFileSelected = computed({
     get() {
       if (state.soundFileSelected) {
         return state.soundFileSelected;
       }
 
-      // Get active index from cache
-      const defaultValue = SOUND_FILES[Math.floor(Math.random() * SOUND_FILES.length)];
-      const cachedSoundFileSelected = cache.get(cacheKeySoundFileSelected, defaultValue);
-      // console.log(`[${utility.currentFileName}::computed::soundFileSelected] cachedSoundFileSelected`, cachedSoundFileSelected);
-
-      // Note: Check to ensure the cached key is still valid
-      return SOUND_FILES.includes(cachedSoundFileSelected ?? '') ? cachedSoundFileSelected : defaultValue;
+      // Default is the first sound file, do not use random sound file, will affect SSR hydration (server rendered page different from client page)
+      // Note: Do not use cached sound file, will also affect SSR hydration
+      const defaultValue = SOUND_FILES[0];
+      return defaultValue;
     },
     set(value) {
       state.soundFileSelected = value;
@@ -218,6 +218,13 @@
 
   // === Lifecycle Hooks ===
   onMounted(() => {
+    // Change timer sound if user has selected a different file (which will be cached) earlier
+    // Note: Important to perform change here instead of the computed field to avoid hydration warning
+    const cachedSoundFileSelected = cache.get(cacheKeySoundFileSelected);
+    if (SOUND_FILES.includes(cachedSoundFileSelected ?? '')) {
+      soundFileSelected.value = cachedSoundFileSelected;
+    }
+
     updateSoundFile();
   });
 </script>

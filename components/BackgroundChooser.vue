@@ -22,6 +22,17 @@
         }
       });
   });
+
+
+  // === Lifecycle Hooks ===
+  onMounted(() => {
+    // Change background image if user has selected one previously (which will be cached)
+    // Note: Important to perform change here to avoid hydration warning
+    const cachedBackgroundImageFileSelected = cache.get(userSelection.cacheKeyBackgroundImageFileSelected);
+    if (userSelection.BACKGROUND_IMAGE_FILES.includes(cachedBackgroundImageFileSelected ?? '')) {
+      userSelection.backgroundImageFileSelected.value = cachedBackgroundImageFileSelected;
+    }
+  });
 </script>
 
 <template>
