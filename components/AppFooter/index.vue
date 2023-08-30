@@ -25,19 +25,19 @@
       v-for="footerLink in footerLinks"
       :key="footerLink.key"
     >
-      <RouterLink
+      <NuxtLink
         :to="footerLink.url"
       >
         {{ footerLink.urlDescription }}
-      </RouterLink>
+      </NuxtLink>
     </VCol>
   </VRow>
 
   <VRow class="py-2">
     <VCol class="text-center">
-      <RouterLink to="/" class="mx-2">Home</RouterLink>
-      <RouterLink to="/benefits" class="mx-2">Benefits of Timer</RouterLink>
-      <RouterLink to="/privacy" class="mx-2">Privacy Policy</RouterLink>
+      <NuxtLink to="/" class="mx-2">Home</NuxtLink>
+      <NuxtLink to="/benefits" class="mx-2">Benefits of Timer</NuxtLink>
+      <NuxtLink to="/privacy" class="mx-2">Privacy Policy</NuxtLink>
     </VCol>
   </VRow>
 

@@ -4,9 +4,9 @@
 </script>
 
 <template>
-  <RouterLink to="/">
+  <NuxtLink to="/">
     <img src="~/assets/img/logo.webp" class="logo mt-1 mr-2"/>
-  </RouterLink>
+  </NuxtLink>
   <h1 @click="router.push({ path: '/' })">{{ userSelection.appTitle.value }}</h1>
 </template>
 
