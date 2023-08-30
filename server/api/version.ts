@@ -1,10 +1,10 @@
 // To call: /api/version
 // https://nuxt.com/docs/guide/directory-structure/server
-import { version } from '~/package.json';
+const { appVersion } = useAppConfig();
 
 export default defineEventHandler((event) => {
   return {
     date: new Date().toUTCString(),
-    version,
+    version: appVersion,
   };
 });

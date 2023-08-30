@@ -1,6 +1,5 @@
 <script setup lang="ts">
-  import { version } from '~/package.json';
-  const { SUPPORTED_URL_SEGMENTS } = useAppConfig();
+  const { appVersion, SUPPORTED_URL_SEGMENTS } = useAppConfig();
 
 
   // === Computed Fields ===
@@ -37,15 +36,15 @@
     <VCol class="text-center">
       <NuxtLink to="/" class="mx-2">Home</NuxtLink>
       <NuxtLink to="/benefits" class="mx-2">Benefits of Timer</NuxtLink>
-      <NuxtLink to="/privacy" class="mx-2">Privacy Policy</NuxtLink>
+      <NuxtLink to="/privacy" class="mx-2" no-prefetch>Privacy Policy</NuxtLink>
     </VCol>
   </VRow>
 
   <VRow>
     <VCol class="text-center">
-      Brought to you by <a href="https://ivan-lim.com" target="_blank" class="mr-2">Ivan Lim</a>
+      Brought to you by <NuxtLink href="https://ivan-lim.com" target="_blank" class="mr-2" rel="noopener">Ivan Lim</NuxtLink>
       <small class="mx-2">© {{ new Date().getFullYear() }}</small>
-      <small class="mx-2">🔖 {{ version }}</small>
+      <small class="mx-2">🔖 {{ appVersion }}</small>
     </VCol>
   </VRow>
 </template>
