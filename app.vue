@@ -87,9 +87,10 @@
       return;
     }
 
-    let hours = Math.floor(currentTimer / SECONDS_IN_AN_HOUR);
-    let minutes = Math.floor((currentTimer - (hours * SECONDS_IN_AN_HOUR)) / SECONDS_IN_A_MINUTE);
-    let seconds = currentTimer - (hours * SECONDS_IN_AN_HOUR) - (minutes * SECONDS_IN_A_MINUTE);
+    const timerToDisplay = Math.round(currentTimer);
+    let hours = Math.floor(timerToDisplay / SECONDS_IN_AN_HOUR);
+    let minutes = Math.floor((timerToDisplay - (hours * SECONDS_IN_AN_HOUR)) / SECONDS_IN_A_MINUTE);
+    let seconds = timerToDisplay - (hours * SECONDS_IN_AN_HOUR) - (minutes * SECONDS_IN_A_MINUTE);
 
     const arrayPageTitle = [];
     if (hours) {

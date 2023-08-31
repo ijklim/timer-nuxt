@@ -13,6 +13,7 @@ interface StateObject {
   isSoundOn: boolean;
   isTimerOn: boolean;
   isTimerVisible: boolean;
+  timeAtLastDisplay: number;
 }
 
 const state: StateObject = reactive({
@@ -25,6 +26,8 @@ const state: StateObject = reactive({
   isSoundOn: false,
   isTimerOn: false,
   isTimerVisible: true,
+  // Track time when countdown is on and time is displayed, helps eliminate setInterval incorrect delay issue
+  timeAtLastDisplay: null,
 });
 
 
@@ -41,6 +44,19 @@ watch(userSelection.initialTimer, (value) => {
 
 export default () => {
   // === Methods ===
+  /**
+   * Calculate what state.currentTimer should be based on state.timeAtLastDisplay
+   */
+  const calculateCurrentTimeForDisplay = () => {
+    const newTimeAtLastDisplay = new Date().getTime();
+    const secondsPassed = Math.round(newTimeAtLastDisplay - state.timeAtLastDisplay) / 1000;
+    // console.log(`[${utility.currentFileName}::calculateCurrentTimeForDisplay()] newTimeAtLastDisplay, state.timeAtLastDisplay: `, newTimeAtLastDisplay, state.timeAtLastDisplay);
+    // console.log(`[${utility.currentFileName}::calculateCurrentTimeForDisplay()] secondsPassed: `, secondsPassed);
+
+    state.currentTimer = Math.max(state.currentTimer - secondsPassed, 0);
+    state.timeAtLastDisplay = newTimeAtLastDisplay;
+  };
+
   /**
    * Set timer to initial value, clear countdown task
    */
@@ -60,6 +76,8 @@ export default () => {
 
   const startTimer = () => {
     state.isTimerOn = true;
+    // Sample state.timeAtLastDisplay: 1693447927861
+    state.timeAtLastDisplay = new Date().getTime();
   }
 
   /**
@@ -93,11 +111,12 @@ export default () => {
   };
 
   const toggleTimer = () => {
-    state.isTimerOn = !state.isTimerOn;
+    state.isTimerOn ? stopTimer() : startTimer();
   }
 
 
   return {
+    calculateCurrentTimeForDisplay,
     resetTimer,
     startSound,
     startTimer,

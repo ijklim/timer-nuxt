@@ -23,9 +23,12 @@
    * Timer formatted for display purpose (hh:mm:ss)
    */
   const formattedTimer = computed(() => {
-    let hours = Math.floor(props.timer / SECONDS_IN_AN_HOUR);
-    let minutes = Math.floor((props.timer - (hours * SECONDS_IN_AN_HOUR)) / SECONDS_IN_A_MINUTE);
-    let seconds = props.timer - (hours * SECONDS_IN_AN_HOUR) - (minutes * SECONDS_IN_A_MINUTE);
+    const timerToDisplay = Math.round(props.timer);
+    // console.log(`[${utility.currentFileName}::formattedTimer()] timerToDisplay:`, timerToDisplay);
+
+    let hours = Math.floor(timerToDisplay / SECONDS_IN_AN_HOUR);
+    let minutes = Math.floor((timerToDisplay - (hours * SECONDS_IN_AN_HOUR)) / SECONDS_IN_A_MINUTE);
+    let seconds = timerToDisplay - (hours * SECONDS_IN_AN_HOUR) - (minutes * SECONDS_IN_A_MINUTE);
     // console.log(`[${utility.currentFileName}::formattedTimer()] hours, minutes, seconds:`, hours, minutes, seconds);
 
     // Pad numbers with 0

@@ -4,6 +4,7 @@
   // === Composables ===
   const timer = useTimer();
   const userSelection = useUserSelection();
+  const utility = useUtility(import.meta);
 
 
   // === Watchers ===
@@ -65,8 +66,10 @@
         return;
       }
 
-      if (timer.state.currentTimer) {
-        timer.state.currentTimer -= 1;
+      if ((timer.state.currentTimer ?? 0) > 0) {
+        // console.log(`[${utility.currentFileName}::onMounted] Date().getTime():`, new Date().getTime());
+        // console.log(`[${utility.currentFileName}::onMounted] timer.state.currentTimer:`, timer.state.currentTimer);
+        timer.calculateCurrentTimeForDisplay();
       }
     }, 1000);
   });
@@ -127,6 +130,7 @@
       cols="12"
     >
       <RandomAd />
+      <!-- <iframe src="https://ads.ivan-lim.com" frameborder="0"></iframe> -->
     </VCol>
   </VRow>
 </template>
