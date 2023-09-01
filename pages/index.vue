@@ -7,6 +7,12 @@
   const utility = useUtility(import.meta);
 
 
+  // === Data ===
+  const state = reactive({
+    isAdLoaded: false,
+  });
+
+
   // === Watchers ===
   watchEffect(() => {
     // console.log(`[${utility.currentFileName}::watchEffect()] timer.state.currentTimer: `, timer.state.currentTimer);
@@ -72,6 +78,29 @@
         timer.calculateCurrentTimeForDisplay();
       }
     }, 1000);
+
+    // Resize ad iframe
+    useHead({
+      script: [
+        // Supports iframe resizing
+        {
+          async: true,
+          crossorigin: 'anonymous',
+          integrity: 'sha512-f0wd6UIvZbsjPNebGx+uMzHmg6KXr1jWvumJDYSEDmwYJYOptZ0dTka/wBJu7Tj80tnCYMKoKicqvZiIc9GJgw==',
+          referrerpolicy: 'no-referrer',
+          src: 'https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.6/iframeResizer.min.js',
+          type: 'text/javascript',
+        },
+      ],
+    });
+
+    setTimeout(() => {
+      // Note: iFrameResize is made available by iframeResizer.min.js
+      iFrameResize({ log: false }, 'iframe.ads');
+
+      // Display ad element
+      state.isAdLoaded = true;
+    }, 2000);
   });
 </script>
 
@@ -128,9 +157,9 @@
     <VCol
       class="mt-10 text-center"
       cols="12"
+      v-show="state.isAdLoaded"
     >
-      <RandomAd />
-      <!-- <iframe src="https://ads.ivan-lim.com" frameborder="0"></iframe> -->
+      <iframe class="ads" src="https://ads.ivan-lim.com" frameborder="0"></iframe>
     </VCol>
   </VRow>
 </template>
@@ -138,5 +167,13 @@
 <style scoped>
 .timer-display {
   cursor: pointer;
+}
+
+iframe.ads {
+  background-color: transparent;
+  /* Without resetting color-scheme the iframe will have white background if global color-scheme is 'dark' */
+  color-scheme: normal;
+  height: 0px;
+  min-width: 100%;
 }
 </style>

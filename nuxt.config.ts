@@ -24,9 +24,10 @@ export default defineNuxtConfig({
   },
   devtools: { enabled: false },
   // Internal project that supports Google and Amazon ads
-  extends: [
-    '../nuxt-ads',
-  ],
+  // 9/1/23 Not necessary to extend nuxt-ads, replaced by iframe
+  // extends: [
+  //   '../nuxt-ads',
+  // ],
   modules: [
     '@invictus.codes/nuxt-vuetify',
   ],
@@ -39,6 +40,7 @@ export default defineNuxtConfig({
     },
   },
   // Turn ssr to false during development for faster load time
+  // ssr: false,
   ssr: true,
   vuetify: {
     moduleOptions: {
