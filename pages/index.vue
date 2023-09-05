@@ -95,7 +95,8 @@
     });
 
     setTimeout(() => {
-      // Note: iFrameResize is made available by iframeResizer.min.js
+      // Resize iframe that displays ad from https://ads.ivan-lim.com
+      // @ts-ignore, iFrameResize is made available by iframeResizer.min.js
       iFrameResize({ log: false }, 'iframe.ads');
 
       // Display ad element

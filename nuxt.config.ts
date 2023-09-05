@@ -5,9 +5,9 @@ export default defineNuxtConfig({
     head: {
       link: [
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Bubblegum Sans&display=swap' },
-        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Comic Neue&display=swap' },
-        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Dai Banna SIL&display=swap' },
+        { rel: 'preload', as: 'style', href: 'https://fonts.googleapis.com/css?family=Bubblegum Sans&display=swap', onload: 'this.onload=null;this.rel="stylesheet"' },
+        { rel: 'preload', as: 'style', href: 'https://fonts.googleapis.com/css?family=Comic Neue&display=swap', onload: 'this.onload=null;this.rel="stylesheet"' },
+        { rel: 'preload', as: 'style', href: 'https://fonts.googleapis.com/css?family=Dai Banna SIL&display=swap', onload: 'this.onload=null;this.rel="stylesheet"' },
       ],
     },
   },
