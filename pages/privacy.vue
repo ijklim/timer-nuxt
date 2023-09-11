@@ -23,7 +23,7 @@
 
       <p>Thank you for visiting {{ currentDomainName }} (the "Website"). Your privacy is important to us, and we are committed to protecting your personal information. This Privacy Policy outlines the types of information we collect when you use our Website and how we may use, store, and share such information. By accessing and using the Website, you consent to the practices described in this policy.</p>
 
-      <h3>Information Collection and Use</h3>
+      <h3 class="mb-5">Information Collection and Use</h3>
 
       <h4>Personal Information</h4>
 
@@ -59,7 +59,7 @@
 
       <h3>Third-Party Services</h3>
 
-      <p>Our Website may use third-party services, including but not limited to Google Analytics, Google AdSense, and Amazon Affiliate links. These services may collect information sent by your browser as part of a web page request, such as cookies or your IP address. Each third-party service has its own privacy policy, which governs how they handle your information. We encourage you to review their privacy policies to understand their practices.</p>
+      <p>Our Website may use third-party services, including but not limited to Google Analytics, Google AdSense, Amazon Affiliate, and MochaHost Affiliate links. These services may collect information sent by your browser as part of a web page request, such as cookies or your IP address. Each third-party service has its own privacy policy, which governs how they handle your information. We encourage you to review their privacy policies to understand their practices.</p>
 
       <h3>Data Security</h3>
 
@@ -67,7 +67,7 @@
 
       <h3>Links to Other Sites</h3>
 
-      <p>Our Website may contain links to other websites that are not operated by us. If you click on a third-party link, you will be directed to that third party's site. We strongly advise you to review the Privacy Policy of every site you visit. We have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites or services.</p>
+      <p>Our Website may contain links to other websites that are not operated by us. If you click on a third-party link, you will be directed to that third-party's site. We strongly advise you to review the Privacy Policy of every site you visit. We have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites or services.</p>
 
       <h3>Children's Privacy</h3>
 

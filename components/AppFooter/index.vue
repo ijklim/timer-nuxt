@@ -7,8 +7,8 @@
     .filter((supportedUrlSegmentKey) => SUPPORTED_URL_SEGMENTS[supportedUrlSegmentKey]?.showInFooter)
     .map((supportedUrlSegmentKey) => ({
       key: supportedUrlSegmentKey,
-      // Remove `/` from supportedUrlSegmentKey, e.g. /10-minute-timer
-      url: supportedUrlSegmentKey.slice(1),
+      // Note: Must add trailing / to avoid redirect, e.g. /10-minute-timer/
+      url: `${supportedUrlSegmentKey}/`,
       urlDescription: SUPPORTED_URL_SEGMENTS[supportedUrlSegmentKey].appTitle,
     }));
 </script>
@@ -35,8 +35,8 @@
   <VRow class="py-2">
     <VCol class="text-center">
       <NuxtLink to="/" class="mx-2">Home</NuxtLink>
-      <NuxtLink to="/benefits" class="mx-2">Benefits of Timer</NuxtLink>
-      <NuxtLink to="/privacy" class="mx-2" no-prefetch>Privacy Policy</NuxtLink>
+      <NuxtLink to="/benefits/" class="mx-2">Benefits of Timer</NuxtLink>
+      <NuxtLink to="/privacy/" class="mx-2" no-prefetch>Privacy Policy</NuxtLink>
     </VCol>
   </VRow>
 
