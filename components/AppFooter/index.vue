@@ -7,8 +7,7 @@
     .filter((supportedUrlSegmentKey) => SUPPORTED_URL_SEGMENTS[supportedUrlSegmentKey]?.showInFooter)
     .map((supportedUrlSegmentKey) => ({
       key: supportedUrlSegmentKey,
-      // Note: Must add trailing / to avoid redirect, e.g. /10-minute-timer/
-      url: `${supportedUrlSegmentKey}/`,
+      url: supportedUrlSegmentKey,
       urlDescription: SUPPORTED_URL_SEGMENTS[supportedUrlSegmentKey].appTitle,
     }));
 </script>

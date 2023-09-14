@@ -6,6 +6,7 @@
   // === Composables ===
   const route = useRoute();
   const router = useRouter();
+  const runtimeConfig = useRuntimeConfig();
   const timer = useTimer();
   const userSelection = useUserSelection();
   const utility = useUtility(import.meta);
@@ -33,6 +34,8 @@
    */
   const handleRouteChange: NavigationHookAfter = (toRoute) => {
     // console.log(`[${utility.currentFileName}::handleRouteChange()] toRoute.[path, params]:`, toRoute.path, toRoute.params);
+    // console.log(`[${utility.currentFileName}::handleRouteChange()] toRoute:`, toRaw(toRoute));
+    // console.log(`[${utility.currentFileName}::handleRouteChange()] router:`, toRaw(router));
 
     // Whenever route changes, scroll to the top, add timer as some pages takes a little time
     if (process.client) {
@@ -46,10 +49,14 @@
     }
 
     const supportedUrlSegmentKeys = Object.keys(SUPPORTED_URL_SEGMENTS);
+
     // toRoute.path examples: 1, /2-minute-timer/, /10-minute-timer/
     // Note: Must remove trailing / if it exists and it is not root (/)
-    const searchKey = toRoute.path?.length > 1 && toRoute.path?.endsWith('/') ? toRoute.path.slice(0, -1) : toRoute.path;
+    // const searchKey = toRoute.path?.length > 1 && toRoute.path?.endsWith('/') ? toRoute.path.slice(0, -1) : toRoute.path;
+    const searchKey = toRoute.path;
     // console.log(`[${utility.currentFileName}::handleRouteChange()] searchKey:`, searchKey);
+    // console.log(`[${utility.currentFileName}::handleRouteChange()] router.resolve(...):`, router.resolve({ path: searchKey }));
+
     if (supportedUrlSegmentKeys.includes(searchKey)) {
       // Route path (e.g. /10-minute-timer) matches a key in SUPPORTED_URL_SEGMENTS
       const isInitialTimerUpdatable = !SUPPORTED_URL_SEGMENTS[searchKey]?.timer;
@@ -59,6 +66,7 @@
       userSelection.setInitialTimer(timer, isInitialTimerUpdatable);
       userSelection.appTitle.value = SUPPORTED_URL_SEGMENTS[searchKey]?.appTitle;
       userSelection.setPageMetaDescription(SUPPORTED_URL_SEGMENTS[searchKey]?.pageMetaDescription);
+      userSelection.setPageLinkCanonical(`${runtimeConfig.public.appDomainName}${searchKey}`);
 
       state.shouldShowBackgroundImage = true;
       return;

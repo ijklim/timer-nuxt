@@ -29,6 +29,7 @@ interface UrlSegmentsObject {
 }
 
 // Note: `: UrlSegmentsObject` indicates `SUPPORTED_URL_SEGMENTS` has type `UrlSegmentsObject`
+// Note: Keys in SUPPORTED_URL_SEGMENTS should all end with trailing / to avoid redirect, e.g. /10-minute-timer/
 const SUPPORTED_URL_SEGMENTS: UrlSegmentsObject = {
   // Note: Only if timer attribute exists should the initial timer be changed
   '/': {
@@ -36,11 +37,11 @@ const SUPPORTED_URL_SEGMENTS: UrlSegmentsObject = {
     pageMetaDescription: appMetaDescription,
     showInFooter: false,
   },
-  '/classroom-timer': {
+  '/classroom-timer/': {
     appTitle: 'Classroom Timer',
     pageMetaDescription: `Classroom timer online. ${SUFFIX_APP_META_DESCRIPTION}`,
   },
-  '/timer-clock': {
+  '/timer-clock/': {
     appTitle: 'Timer Clock',
     pageMetaDescription: `Timer clock online. ${SUFFIX_APP_META_DESCRIPTION}`,
   },
@@ -48,7 +49,7 @@ const SUPPORTED_URL_SEGMENTS: UrlSegmentsObject = {
 
 // Add 1 Minute Timer, 2 Minute Timer...
 [1, 2, 5, 10, 15, 20, 25, 30, 45].forEach((noOfMinutes) => {
-  SUPPORTED_URL_SEGMENTS[`/${noOfMinutes}-minute-timer` as string] = {
+  SUPPORTED_URL_SEGMENTS[`/${noOfMinutes}-minute-timer/` as string] = {
     appTitle: `${noOfMinutes} Minute Timer`,
     pageMetaDescription: `${noOfMinutes} minute timer online. ${SUFFIX_APP_META_DESCRIPTION}`,
     showInFooter: true,
@@ -57,7 +58,7 @@ const SUPPORTED_URL_SEGMENTS: UrlSegmentsObject = {
 });
 
 // Add 1 Hour Timer
-SUPPORTED_URL_SEGMENTS['/1-hour-timer'] = {
+SUPPORTED_URL_SEGMENTS['/1-hour-timer/'] = {
   appTitle: '1 Hour Timer',
   pageMetaDescription: `1 hour timer online. ${SUFFIX_APP_META_DESCRIPTION}`,
   timer: SECONDS_IN_A_MINUTE * 60,

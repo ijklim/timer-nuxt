@@ -39,6 +39,13 @@ export default defineNuxtConfig({
       },
     },
   },
+  // https://nuxt.com/docs/getting-started/configuration
+  runtimeConfig: {
+    // Keys within public are also exposed client-side
+    public: {
+      appDomainName: process.env.APP_DOMAIN_NAME,
+    },
+  },
   // Turn ssr to false during development for faster load time
   // ssr: false,
   ssr: true,

@@ -176,6 +176,19 @@ const setInitialTimer = (valueTimer: number | null, isInitialTimerUpdatable = tr
 };
 
 /**
+ * Setting canonical link in document <head>
+ *
+ * @param {string} linkCanonical
+ */
+const setPageLinkCanonical = (linkCanonical: string) => {
+  useHead(() => ({
+    link: [
+      { rel: 'canonical', href: linkCanonical },
+    ],
+  }));
+};
+
+/**
  * Setting description meta tag in document <head>
  *
  * @param {string} metaDescription
@@ -214,6 +227,7 @@ export default () => {
     isDarkThemeSelected,
     optionNoBackgroundSelected,
     setInitialTimer,
+    setPageLinkCanonical,
     setPageMetaDescription,
     setPageTitle,
     state,
