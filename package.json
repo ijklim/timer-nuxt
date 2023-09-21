@@ -12,16 +12,19 @@
     "devo": "nuxt dev -o",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "test": "npx cypress open"
   },
   "devDependencies": {
     "@invictus.codes/nuxt-vuetify": "^0.3.0",
     "@nuxt/devtools": "latest",
+    "cypress": "^13.2.0",
     "nuxt": "^3.6.5",
     "sass": "^1.66.1"
   },
   "dependencyNotes": {
     "@invictus.codes/nuxt-vuetify": "Install Vuetify Material Design component framework",
+    "cypress": "End-to-End Testing framework",
     "sass": "Allows scss styling syntax, used in main.scss"
   }
 }
