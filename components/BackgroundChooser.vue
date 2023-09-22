@@ -49,6 +49,7 @@
         <!-- Using `menu-props` to close menu when custom list item is clicked: https://vuetifyjs.com/en/api/v-select/#props-menu-props -->
         <!-- Note: Set `menu` to true to open dropdown by default, useful for testing -->
         <VSelect
+          data-test="dropdown-background-chooser"
           label="Background Picture"
           variant="outlined"
           v-model="userSelection.backgroundImageFileSelected.value"
