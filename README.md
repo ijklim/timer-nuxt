@@ -120,3 +120,19 @@ pnpm update --interactive --latest
 
 All changes ensure compatibility with Nuxt 4 and the official Vuetify module while maintaining existing functionality.
 
+
+## === GitHub Action Auto Deploy to Shared Hosting Server ===
+
+* Ensure these secret names match the variables referenced in `.github/workflows/ssh-deploy.yml`
+
+* In the repository, go to `Settings` > `Secrets and variables` > `Actions` > `Repository secrets` > `New repository secret`
+
+  * SSH_HOST: Server hostname/IP
+
+  * SSH_USERNAME: Your SSH username
+
+  * SSH_KEY: Your private SSH key content (the entire key including headers)
+
+  * SSH_DEPLOY_PATH: Path on host to copy files
+
+* Create GitHub action file (e.g. `.github/workflows/ssh-deploy.yml`)
