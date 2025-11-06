@@ -1,7 +1,7 @@
-# Version: 3.0.0
+# Version: 3.0.1
 # Last Updated: 2025-11-06
 
-name: Deploy to Shared Hosting (FTP/S)
+name: Deploy to Shared Hosting
 
 on:
   push:
