@@ -1,4 +1,4 @@
-# Version: 3.0.1
+# Version: 3.0.2
 # Last Updated: 2025-11-06
 
 name: Deploy to Shared Hosting
@@ -79,21 +79,34 @@ jobs:
           name: generated-output
           path: generated-output
 
-      # Deploy via SCP (Secure Copy Protocol)
-      # SCP is more reliable than FTP/FTPS for shared hosting and works over SSH
-      # Requires: SSH_HOST, SSH_USER, SSH_KEY (private key), and SSH_DEPLOY_PATH secrets
-      - name: Deploy via SCP
-        uses: garygrossgarten/github-action-scp@release
+      # Deploy via SCP using appleboy/scp-action
+      # appleboy/scp-action is more mature and actively maintained than other SCP alternatives
+      # It provides better reliability, more features, and faster bug fixes
+      # Latest stable version: v0.1.4
+      - name: Deploy generated site via SCP
+        uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
-          privateKey: ${{ secrets.SSH_KEY }}
-          local: generated-output/
-          remote: ${{ secrets.SSH_DEPLOY_PATH }}
-          # recursive: Copies entire directory structure from local to remote
-          # When true: Creates subdirectories on the server as needed
-          # When false: Only copies files in the root directory (usually not what you want)
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          source: generated-output/
+          target: ${{ secrets.SSH_DEPLOY_PATH }}
+          # recursive: Copy entire directory structure (set to false to only copy individual files)
           recursive: true
-          # Optional: Set to true to delete files on remote that don't exist locally
-          # directoryMode: 0755
-          # fileMode: 0644
+          # strip_prefix: Remove the source directory name from the target path
+          # Set to false if you want generated-output/ to be created on the server
+          strip_prefix: true
+
+      - name: Run remote post-deploy commands
+        uses: appleboy/ssh-action@v1.2.2
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            echo "Running post-deploy tasks on server"
+            cd ${{ secrets.SSH_DEPLOY_PATH }}
+            date > .deploy_timestamp
+            echo "Remote tasks completed"
