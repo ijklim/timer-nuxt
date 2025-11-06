@@ -106,8 +106,7 @@
 </script>
 
 <template>
-  <!-- align-center: vertically middle -->
-  <!-- justify-center: horizontally center -->
+  <!-- Hint: align-center (vertically middle), justify-center (horizontally center) -->
   <VRow class="align-center">
     <VCol
       class="text-center mt-5 py-0"
@@ -153,8 +152,7 @@
       <ActionButtons />
     </VCol>
 
-    <!-- === Ads: Google AdSense, Amazon === -->
-    <!-- Available through extends '../nuxt-ads' -->
+    <!-- === Ads: Google AdSense, MochaHost === -->
     <VCol
       class="mt-10 text-center"
       cols="12"

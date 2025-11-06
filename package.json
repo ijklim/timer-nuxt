@@ -1,7 +1,7 @@
 {
-  "name": "nuxt-app",
+  "name": "nuxt-online-timer",
   "displayName": "Online Timer",
-  "version": "2.7.2",
+  "version": "3.0.0",
   "author": {
     "name": "Ivan Lim"
   },
@@ -16,14 +16,15 @@
     "test": "npx cypress open"
   },
   "devDependencies": {
-    "@invictus.codes/nuxt-vuetify": "^0.3.0",
     "@nuxt/devtools": "latest",
-    "cypress": "^13.2.0",
-    "nuxt": "^3.6.5",
-    "sass": "^1.66.1"
+    "cypress": "^15.6.0",
+    "nuxt": "^4.2.0",
+    "sass": "^1.66.1",
+    "vuetify": "^3.10.9",
+    "vuetify-nuxt-module": "^0.18.8"
   },
   "dependencyNotes": {
-    "@invictus.codes/nuxt-vuetify": "Install Vuetify Material Design component framework",
+    "vuetify-nuxt-module": "Install Vuetify Material Design component framework",
     "cypress": "End-to-End Testing framework",
     "sass": "Allows scss styling syntax, used in main.scss"
   }

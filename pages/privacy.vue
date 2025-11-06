@@ -15,8 +15,8 @@
 </script>
 
 <template>
-  <VRow class="footer-border-bottom">
-    <VCol class="py-8 px-10 text-justify">
+  <VRow class="border-b">
+    <VCol class="px-10 pt-16 text-justify">
       <h2>Privacy Policy</h2>
 
       <p>Effective Date: Aug 1st, 2023</p>

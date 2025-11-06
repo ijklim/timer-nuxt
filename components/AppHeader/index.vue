@@ -17,9 +17,11 @@
 
 
   // === Watchers ===
-  watch(userSelection.isDarkThemeSelected, (value) => {
-    theme.global.name.value = value ? 'dark' : 'light';
-  }, { immediate: true });
+  watch(
+    userSelection.isDarkThemeSelected,
+    (value) => theme.change(value ? 'dark' : 'light'),
+    { immediate: true }
+  );
 
 
   // === Lifecycle Hooks ===
@@ -34,13 +36,13 @@
 </script>
 
 <template>
-  <VAppBar class="pl-5" density="compact">
+  <VAppBar class="ps-5 position-fixed" density="compact" elevation="5">
     <AppHeaderTitle />
 
     <!-- Note: Removing unnecessary grid-template-areas for layout reason -->
     <!-- Note: With composable computed field, v-model is set to .value -->
     <VSwitch
-      class="mr-5"
+      class="ml-auto mr-5"
       inset
       style="grid-template-areas: none;"
       v-model="userSelection.isDarkThemeSelected.value"

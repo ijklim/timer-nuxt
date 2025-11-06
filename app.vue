@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { NavigationHookAfter } from 'vue-router';
+  import type { NavigationHookAfter } from 'vue-router';
   const { appName, SECONDS_IN_A_MINUTE, SECONDS_IN_AN_HOUR, SUPPORTED_URL_SEGMENTS } = useAppConfig();
 
 
@@ -64,8 +64,8 @@
       const timer = SUPPORTED_URL_SEGMENTS[searchKey]?.timer ?? null;
 
       userSelection.setInitialTimer(timer, isInitialTimerUpdatable);
-      userSelection.appTitle.value = SUPPORTED_URL_SEGMENTS[searchKey]?.appTitle;
-      userSelection.setPageMetaDescription(SUPPORTED_URL_SEGMENTS[searchKey]?.pageMetaDescription);
+      userSelection.appTitle.value = SUPPORTED_URL_SEGMENTS[searchKey]?.appTitle || '';
+      userSelection.setPageMetaDescription(SUPPORTED_URL_SEGMENTS[searchKey]?.pageMetaDescription || '');
       userSelection.setPageLinkCanonical(`${runtimeConfig.public.appDomainName}${searchKey}`);
 
       state.shouldShowBackgroundImage = true;
@@ -126,24 +126,26 @@
 </script>
 
 <template>
-  <VLayout>
-    <!-- === Header === -->
-    <!-- Note: Add opacity to support see through background -->
-    <AppHeader style="opacity:0.85;" />
+  <VApp>
+    <VLayout>
+      <!-- === Header === -->
+      <!-- Note: Add opacity to support see through background -->
+      <AppHeader style="opacity:0.85;" />
 
-    <VMain>
-      <!-- Note: Removing padding from container prevents time display from being cut off on the right, and footer with gap -->
-      <VContainer fluid class="pa-0">
-        <section class="main-content-with-background">
-          <!-- Note: More top spacing needed to support removing --v-layout-top space -->
-          <RouterView class="pt-10" />
-        </section>
+      <VMain>
+        <!-- Note: Removing padding from container prevents time display from being cut off on the right, and footer with gap -->
+        <VContainer fluid class="pa-0">
+          <section class="main-content-with-background pt-10">
+            <!-- Note: More top spacing needed to support removing --v-layout-top space -->
+            <NuxtPage />
+          </section>
 
-        <!-- === Footer === -->
-        <AppFooter />
-      </VContainer>
-    </VMain>
-  </VLayout>
+          <!-- === Footer === -->
+          <AppFooter />
+        </VContainer>
+      </VMain>
+    </VLayout>
+  </VApp>
 </template>
 
 <style scoped>

@@ -1,6 +1,12 @@
 // Nuxt Configuration: https://nuxt.com/docs/api/configuration/nuxt-config
 // Vuetify Module: https://nuxt.com/modules/nuxt-vuetify
+import { defineNuxtConfig } from 'nuxt/config'
+
 export default defineNuxtConfig({
+  compatibilityDate: '2025-11-06',
+  // experimental: {
+  //   sharedPrerenderData: false,
+  // },
   app: {
     head: {
       link: [
@@ -29,7 +35,7 @@ export default defineNuxtConfig({
   //   '../nuxt-ads',
   // ],
   modules: [
-    '@invictus.codes/nuxt-vuetify',
+    'vuetify-nuxt-module',
   ],
   // `nitro` setting below allows usage of `import.meta`
   nitro: {
@@ -47,18 +53,6 @@ export default defineNuxtConfig({
     },
   },
   // Turn ssr to false during development for faster load time
-  // ssr: false,
-  ssr: true,
-  vuetify: {
-    moduleOptions: {
-      /* nuxt-vuetify module options */
-      treeshaking: true,
-      useIconCDN: true,
-
-      /* vite-plugin-vuetify options */
-      // styles: true | 'none' | 'expose' | 'sass' | { configFile: string },
-      // autoImport: true | false,
-      // useVuetifyLabs: true | false,
-    }
-  },
+  ssr: false,
+  // ssr: true,
 });

@@ -12,12 +12,12 @@
 -->
 
 <template>
-  <VRow class="footer-border-bottom">
-    <VCol class="py-8 px-10 text-justify">
+  <VRow class="border-b">
+    <VCol class="px-10 pt-16 text-justify">
       <h2>Benefits of Timer</h2>
 
 
-      <p><h3>Time Management</h3></p>
+      <h3>Time Management</h3>
 
       <p>The timer app helps both teachers and students manage their time effectively during various learning activities. Teachers can set time limits for class discussions, quizzes, or group activities, while students can use it for tracking study sessions, breaks, or completing assignments within specific time frames. This promotes better time allocation and keeps everyone focused and productive.</p>
 
