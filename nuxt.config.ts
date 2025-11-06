@@ -53,6 +53,6 @@ export default defineNuxtConfig({
     },
   },
   // Turn ssr to false during development for faster load time
-  ssr: false,
-  // ssr: true,
+  // ssr: false,
+  ssr: true,
 });

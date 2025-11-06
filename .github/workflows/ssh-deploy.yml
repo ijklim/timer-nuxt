@@ -1,4 +1,4 @@
-# Version: 3.0.2
+# Version: 3.0.3
 # Last Updated: 2025-11-06
 
 name: Deploy to Shared Hosting
@@ -92,11 +92,11 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           source: generated-output/
           target: ${{ secrets.SSH_DEPLOY_PATH }}
-          # recursive: Copy entire directory structure (set to false to only copy individual files)
-          recursive: true
-          # strip_prefix: Remove the source directory name from the target path
-          # Set to false if you want generated-output/ to be created on the server
-          strip_prefix: true
+          # strip_components: Remove leading path components from source files
+          # 1 removes "generated-output/" prefix so files copy directly to target
+          strip_components: 1
+          # overwrite: Replace files on remote even if they already exist
+          overwrite: true
 
       - name: Run remote post-deploy commands
         uses: appleboy/ssh-action@v1.2.2
