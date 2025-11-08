@@ -2,6 +2,40 @@
 
 A minimalist countdown timer web application built with Nuxt 4 and Vuetify 3. Features a clean, responsive UI with customizable timer durations, sound notifications, background themes, and integrated ad support. Perfect for productivity, cooking, workouts, or any activity that benefits from a visual countdown.
 
+---
+
+## 🎯 Technical Highlights
+
+**Frontend Architecture:**
+- **Vue 3 + Nuxt 4** - Modern SSR-capable framework with auto-imports, file-based routing, and TypeScript support
+- **Component-Based Architecture** - Reusable Vue 3 components with strict separation of concerns (ActionButtons, TimerDisplay, BackgroundChooser)
+- **Reactive State Management** - Vue 3 Composition API with composables (useTimer, useUserSelection, useUtility) for clean state handling
+- **Material Design UI** - Vuetify 3 component library for responsive, accessible interface
+
+**Frontend Techniques:**
+- **Responsive Design** - CSS Grid/Flexbox with mobile-first approach and Vuetify's VGrid system
+- **Cross-Origin Communication** - Iframe resizing via postMessage API with origin validation for ad integration
+- **Dynamic Theming** - Dark/light mode toggle with persistent user preferences
+- **Audio Integration** - Sound notifications with configurable notification timing
+
+**DevOps & CI/CD:**
+- **GitHub Actions Automation** - Automated build, test, and deployment pipeline (`.github/workflows/ssh-deploy.yml`)
+- **Static Site Generation** - Nuxt generate for serverless deployment to shared hosting (CDN-friendly)
+- **Environment Configuration** - Runtime-config management via GitHub Secrets (no hardcoded values)
+- **SSH Deployment** - Automated SCP-based file transfer to shared hosting servers with post-deploy commands
+
+**Security & Best Practices:**
+- **Secret Management** - GitHub Secrets for sensitive credentials (never committed to repo)
+- **CORS & XSS Prevention** - Proper cross-origin request handling and content validation
+- **Access Control** - postMessage origin verification for secure iframe communication
+- **Security Auditing** - pnpm audit integration for dependency vulnerability scanning
+
+**Build & Package Management:**
+- **pnpm Workspaces** - Efficient dependency management with pnpm lock file and version overrides
+- **TypeScript** - Full type safety across components and configuration files
+- **Dependency Optimization** - Strategic version pinning (esbuild security override) in pnpm-workspace.yaml
+
+---
 
 ## Commands
 
