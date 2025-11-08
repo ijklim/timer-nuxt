@@ -1,75 +1,58 @@
-# Nuxt 3 Minimal Starter
+# Timer App
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A minimalist countdown timer web application built with Nuxt 4 and Vuetify 3. Features a clean, responsive UI with customizable timer durations, sound notifications, background themes, and integrated ad support. Perfect for productivity, cooking, workouts, or any activity that benefits from a visual countdown.
 
-## Creation
+
+## Commands
 
 ```bash
+# Nuxt project creation
 npx nuxi init timer-nuxt
 
-# Instructions to add Vuetify: https://nuxt.com/modules/nuxt-vuetify
-```
-
-## Setup
-
-Make sure to install the dependencies:
-
-```bash
-# npm
-npm install
-
-# pnpm
+# Install dependencies
 pnpm install
 
-# yarn
-yarn install
+# Start the development server
+pnpm dev
+
+# Build for Node.js server deployment (Vercel, Heroku, etc.)
+# Creates server and client code, requires Node.js runtime
+pnpm build
+
+# Generate static site for static hosting (GitHub Pages, shared hosting, CDN)
+# Pre-renders all routes to static HTML files
+# Use this for deployment to shared hosting via SCP/FTP
+pnpm generate
+
+# Locally preview production build
+pnpm preview
+
+# Audit for security vulnerabilities in dependencies
+pnpm audit
+
+# Fix security vulnerabilities (auto-fix what's possible)
+pnpm audit --fix
 ```
 
-## Development Server
+## Environment Variables (.env)
 
-Start the development server on `http://localhost:3000`:
+This project uses environment variables for configuration. Create a `.env` file in the project root:
 
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
+```env
+# Example .env file
+NUXT_PUBLIC_ADS_URL=https://ads.ivan-lim.com
 ```
 
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
-
+**⚠️ Important for Shared Hosting Deployment:**
+- The `.env` file is **NOT** included in the git repository (listed in `.gitignore`)
+- After deploying to shared hosting via GitHub Actions, **manually create `.env` on the server** with your production settings
+- SSH into your server and create the file:
+  ```bash
+  ssh user@hostname
+  cd /path/to/app
+  nano .env
+  # Add your production environment variables
+  ```
 
 ## === Upgrade Performed on 11/6/2025 ===
 
@@ -132,6 +115,8 @@ All changes ensure compatibility with Nuxt 4 and the official Vuetify module whi
   * SSH_USERNAME: Your SSH username
 
   * SSH_KEY: Your private SSH key content (the entire key including headers)
+
+  * SSH_PORT: SSH port number (default is 22)
 
   * SSH_DEPLOY_PATH: Path on host to copy files
 

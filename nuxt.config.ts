@@ -49,6 +49,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     // Keys within public are also exposed client-side
     public: {
+      adUrl: process.env.AD_URL,
       appDomainName: process.env.APP_DOMAIN_NAME,
     },
   },

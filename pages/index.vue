@@ -2,15 +2,10 @@
   const { DURATION_SOUND } = useAppConfig();
 
   // === Composables ===
+  const runtimeConfig = useRuntimeConfig();
   const timer = useTimer();
   const userSelection = useUserSelection();
   const utility = useUtility(import.meta);
-
-
-  // === Data ===
-  const state = reactive({
-    isAdLoaded: false,
-  });
 
 
   // === Watchers ===
@@ -79,29 +74,22 @@
       }
     }, 1000);
 
-    // Resize ad iframe
-    useHead({
-      script: [
-        // Supports iframe resizing
-        {
-          async: true,
-          crossorigin: 'anonymous',
-          integrity: 'sha512-f0wd6UIvZbsjPNebGx+uMzHmg6KXr1jWvumJDYSEDmwYJYOptZ0dTka/wBJu7Tj80tnCYMKoKicqvZiIc9GJgw==',
-          referrerpolicy: 'no-referrer',
-          src: 'https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.6/iframeResizer.min.js',
-          type: 'text/javascript',
-        },
-      ],
-    });
-
-    setTimeout(() => {
-      // Resize iframe that displays ad from https://ads.ivan-lim.com
-      // @ts-ignore, iFrameResize is made available by iframeResizer.min.js
-      iFrameResize({ log: false }, 'iframe.ads');
-
-      // Display ad element
-      state.isAdLoaded = true;
-    }, 2000);
+    // Show Ad if adUrl config is set
+    if (runtimeConfig.public.adUrl) {
+      useHead({
+        script: [
+          // Insert Ad from `nuxt-ads`
+          {
+            async: true,
+            crossorigin: 'anonymous',
+            'data-ad-container-id': 'nuxt-ad',
+            referrerpolicy: 'no-referrer',
+            src: runtimeConfig.public.adUrl,
+            type: 'text/javascript',
+          },
+        ],
+      });
+    }
   });
 </script>
 
@@ -156,9 +144,9 @@
     <VCol
       class="mt-10 text-center"
       cols="12"
-      v-show="state.isAdLoaded"
+      v-if="runtimeConfig.public.adUrl"
     >
-      <iframe class="ads" src="https://ads.ivan-lim.com" frameborder="0"></iframe>
+      <div id="nuxt-ad" />
     </VCol>
   </VRow>
 </template>
@@ -166,13 +154,5 @@
 <style scoped>
 .timer-display {
   cursor: pointer;
-}
-
-iframe.ads {
-  background-color: transparent;
-  /* Without resetting color-scheme the iframe will have white background if global color-scheme is 'dark' */
-  color-scheme: normal;
-  height: 0px;
-  min-width: 100%;
 }
 </style>

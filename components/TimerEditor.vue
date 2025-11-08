@@ -42,50 +42,52 @@
 
   <!-- Note: Using table to give label column the same width -->
   <table class="table-sliders w-100">
-    <!-- === Slider: Hours === -->
-    <tr>
-      <td>H</td>
-      <td>
-        <TimerEditorSlider
-          color="orange"
-          v-model="hours"
-          :max="24"
-          :thumb-label="hours > 0 ? 'always' : ''"
-          @decrement="hours > 0 ? hours -= 1 : false"
-          @increment="hours < 24 ? hours += 1 : false"
-        />
-      </td>
-    </tr>
+    <tbody>
+      <!-- === Slider: Hours === -->
+      <tr>
+        <td>H</td>
+        <td>
+          <TimerEditorSlider
+            color="orange"
+            v-model="hours"
+            :max="24"
+            :thumb-label="hours > 0 ? 'always' : ''"
+            @decrement="hours > 0 ? hours -= 1 : false"
+            @increment="hours < 24 ? hours += 1 : false"
+          />
+        </td>
+      </tr>
 
-    <!-- === Slider: Minutes === -->
-    <tr>
-      <td>M</td>
-      <td>
-        <TimerEditorSlider
-          color="amber"
-          v-model="minutes"
-          :max="59"
-          :thumb-label="minutes > 0 ? 'always' : ''"
-          @decrement="minutes > 0 ? minutes -= 1 : false"
-          @increment="minutes < 59 ? minutes += 1 : false"
-        />
-      </td>
-    </tr>
+      <!-- === Slider: Minutes === -->
+      <tr>
+        <td>M</td>
+        <td>
+          <TimerEditorSlider
+            color="amber"
+            v-model="minutes"
+            :max="59"
+            :thumb-label="minutes > 0 ? 'always' : ''"
+            @decrement="minutes > 0 ? minutes -= 1 : false"
+            @increment="minutes < 59 ? minutes += 1 : false"
+          />
+        </td>
+      </tr>
 
-    <!-- === Slider: Seconds === -->
-    <tr>
-      <td>S</td>
-      <td>
-        <TimerEditorSlider
-          color="yellow"
-          v-model="seconds"
-          :max="59"
-          :thumb-label="seconds > 0 ? 'always' : ''"
-          @decrement="seconds > 0 ? seconds -= 1 : false"
-          @increment="seconds < 59 ? seconds += 1 : false"
-        />
-      </td>
-    </tr>
+      <!-- === Slider: Seconds === -->
+      <tr>
+        <td>S</td>
+        <td>
+          <TimerEditorSlider
+            color="yellow"
+            v-model="seconds"
+            :max="59"
+            :thumb-label="seconds > 0 ? 'always' : ''"
+            @decrement="seconds > 0 ? seconds -= 1 : false"
+            @increment="seconds < 59 ? seconds += 1 : false"
+          />
+        </td>
+      </tr>
+    </tbody>
   </table>
 </template>
 
