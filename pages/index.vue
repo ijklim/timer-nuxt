@@ -76,6 +76,8 @@
 
     // Show Ad if adUrl config is set
     if (runtimeConfig.public.adUrl) {
+      // console.log('[Debug Only] onMounted::runtimeConfig.public.adUrl', runtimeConfig.public.adUrl);
+
       useHead({
         script: [
           // Insert Ad from `nuxt-ads`

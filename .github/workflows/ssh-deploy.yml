@@ -1,5 +1,20 @@
-# Version: 3.0.3
-# Last Updated: 2025-11-06
+# Version: 3.1.0
+# Last Updated: 2025-11-08
+
+# REQUIRED GITHUB SECRETS:
+# Before running this workflow, add these secrets to your GitHub repository:
+# Settings > Secrets and variables > Actions > New repository secret
+#
+# Environment Variable Secrets (for .env file):
+#   - NUXT_PUBLIC_APP_DOMAIN_NAME: Production domain name (e.g., https://timer.example.com)
+#   - NUXT_PUBLIC_AD_URL: Ads server URL (e.g., https://ads.example.com)
+#
+# SSH Deployment Secrets:
+#   - SSH_HOST: Server hostname or IP address
+#   - SSH_USERNAME: SSH username for authentication
+#   - SSH_KEY: Private SSH key content (entire key including -----BEGIN/END lines)
+#   - SSH_PORT: SSH port (usually 22)
+#   - SSH_DEPLOY_PATH: Target directory on server (e.g., /var/www/html/timer)
 
 name: Deploy to Shared Hosting
 
@@ -54,6 +69,13 @@ jobs:
       # Note: For production, consider using --frozen-lockfile for strict reproducibility
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
+
+      # Set up environment variables here using GitHub Secrets
+      # Note: Ensure environment variables/secrets are created before running `pnpm generate`
+      - name: Create .env file from secrets
+        run: |
+          echo "NUXT_PUBLIC_APP_DOMAIN_NAME=${{ secrets.NUXT_PUBLIC_APP_DOMAIN_NAME }}" > .env
+          echo "NUXT_PUBLIC_AD_URL=${{ secrets.NUXT_PUBLIC_AD_URL }}" >> .env
 
       - name: Generate static site
         run: pnpm generate

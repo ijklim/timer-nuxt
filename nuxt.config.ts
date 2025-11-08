@@ -49,8 +49,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     // Keys within public are also exposed client-side
     public: {
-      adUrl: process.env.AD_URL,
-      appDomainName: process.env.APP_DOMAIN_NAME,
+      adUrl: process.env.NUXT_PUBLIC_AD_URL,
+      appDomainName: process.env.NUXT_PUBLIC_APP_DOMAIN_NAME,
     },
   },
   // Turn ssr to false during development for faster load time
